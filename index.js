@@ -36,9 +36,6 @@ let topMovies = [
 
 app.use(morgan("common"));
 
-// app.get("/", (req, res) => {
-//   res.send("Welcome to my app!");
-// });
 app.get("/", (req, res) => {
   res.send("Welcome to Myflix");
 });
