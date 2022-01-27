@@ -143,7 +143,7 @@ app.get("/movies/director/:directorName", (req, res) => {
 });
 // Create
 app.post("/users", (req, res) => {
-  let newUser = req.body;
+  const newUser = req.body;
 
   if (newUser.name) {
     newUser.id = uuid.v4();
@@ -154,16 +154,56 @@ app.post("/users", (req, res) => {
   }
 });
 // Update
-app.put("/users/:name", (req, res) => {
-  res.send("User name modified");
+app.put("/users/:id", (req, res) => {
+  const updatedUser = req.body;
+  // this is destructuring so no need to write (req.params.id)
+  const { id } = req.params;
+  // Checking if user exists
+  let user = users.find((user) => user.id == id);
+  if (user) {
+    user.name = updatedUser.name;
+    res.status(200).json(user);
+  } else {
+    res.status(400).send("User not found");
+  }
 });
 // Create
-app.post("/users/:favorites", (req, res) => {
-  res.send("Movie added to favorites");
+app.post("/users/:id/:movieTitle", (req, res) => {
+  const { id, movieTitle } = req.params;
+  // Checking if user exists
+  let user = users.find((user) => user.id == id);
+  if (user) {
+    user.favoriteMovies.push(movieTitle);
+    res.status(200).send(`${movieTitle} has been added to ${user.name}'s favorites`);
+  } else {
+    res.status(400).send("Please add movie title to add to favorites");
+  }
+});
+// Delete
+app.delete("/users/:id/:movieTitle", (req, res) => {
+  const { id, movieTitle } = req.params;
+  // Checking if user exists
+  let user = users.find((user) => user.id == id);
+  if (user) {
+    user.favoriteMovies = user.favoriteMovies.filter((title) => title !== movieTitle);
+    res.status(200).send(`${movieTitle} has been removed from ${user.name}'s favorites`);
+  } else {
+    res.status(400).send("Please add movie title to remove from favorites");
+  }
 });
 
-app.post("/users", (req, res) => {
-  res.send("User removed");
+// Delete
+app.delete("/users/:id", (req, res) => {
+  const { id } = req.params;
+  // Checking if user exists
+  let user = users.find((user) => user.id == id);
+  if (user) {
+    // We have used users instead of user as we have to modify user array by deleting a record
+    users = users.filter((e) => e.id == id);
+    res.status(200).send(`${user.name} with id ${id} has been deregistered`);
+  } else {
+    res.status(400).send("Please add id to deregister");
+  }
 });
 
 app.use((err, req, res, next) => {

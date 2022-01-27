@@ -63,24 +63,24 @@
         </tr>
         <tr>
           <td>Allow users to update their info ie. username</td>
-          <td>/users/:name</td>
-          <td>name</td>
+          <td>/users/:id</td>
+          <td>id</td>
           <td>PUT</td>
           <td>None</td>
-          <td>Returns a success message that the username has been updated</td>
+          <td>A Json object about the updated userName that is added with user id</td>
         </tr>
         <tr>
           <td>Allow users to add movie to their favorites</td>
-          <td>/users/:favorites</td>
-          <td>favorites</td>
-          <td>PUT</td>
+          <td>/users/:id/:movieTitle</td>
+          <td>movieTitle</td>
+          <td>POST</td>
           <td>None</td>
           <td>Returns a success message that the movie added to favorites</td>
         </tr>
         <tr>
           <td>Allow users to remove movie from their favorites</td>
-          <td>/users/:favorites</td>
-          <td>favorites</td>
+          <td>/users/:id/:movieTitle</td>
+          <td>movieTitle</td>
           <td>DELETE</td>
           <td>None</td>
           <td>Returns a success message that the movie removed from favorites</td>
