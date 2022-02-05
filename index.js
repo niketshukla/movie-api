@@ -10,104 +10,207 @@ app.use(express.static(__dirname + "/css"));
 let movies = [
   {
     title: "Harry Potter and the Sorcerer's Stone",
+    description:
+      "Adaptation of the first of J.K. Rowling's popular children's novels about Harry Potter, a boy who learns on his eleventh birthday that he is the orphaned son of two powerful wizards and possesses unique magical powers of his own.",
     genre: {
       name: "Fantasy Fiction",
-      description: "Lorem Ipsum",
+      description:
+        "Fantasy is a genre of speculative fiction involving magical elements, typically set in a fictional universe and sometimes inspired by mythology and folklore. Its roots are in oral traditions, which then became fantasy literature and drama.",
     },
     director: {
-      name: "J.K. Rowling",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      name: "Alfonso Cuarón",
+      bio: "Alfonso Cuarón Orozco is a Mexican filmmaker. Cuarón is the first Mexico-born filmmaker to win the Academy Award for Best Director.",
+      birth: "1961",
+      death: null,
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg",
+    featured: true,
+  },
+  {
+    title: "Harry Potter and the Chamber of Secrets",
+    description:
+      "Adaptation of the first of J.K. Rowling's popular children's novels about Harry Potter, a boy who learns on his eleventh birthday that he is the orphaned son of two powerful wizards and possesses unique magical powers of his own.",
+    genre: {
+      name: "Fantasy Fiction",
+      description:
+        "Fantasy is a genre of speculative fiction involving magical elements, typically set in a fictional universe and sometimes inspired by mythology and folklore. Its roots are in oral traditions, which then became fantasy literature and drama.",
+    },
+    director: {
+      name: "Alfonso Cuarón",
+      bio: "Alfonso Cuarón Orozco is a Mexican filmmaker. Cuarón is the first Mexico-born filmmaker to win the Academy Award for Best Director.",
+      birth: "1961",
+      death: null,
+    },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/5/5c/Harry_Potter_and_the_Chamber_of_Secrets.jpg",
+    featured: false,
   },
   {
     title: "Lord of the Rings",
+    description: "The future of civilization rests in the fate of the One Ring, which has been lost for centuries. Powerful forces are unrelenting in their search for it.",
     genre: {
-      name: "Adventure Fiction",
-      description: "Lorem Ipsum",
+      name: "Adventure",
+      description: "Adventure fiction is a type of romance that usually presents danger, or gives the reader a sense of excitement.",
     },
     director: {
-      name: "J.R.R. Tolkien",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      name: "Peter Jackson",
+      bio: "Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter, and film producer.",
+      birth: "1961",
+      death: null,
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_%282001%29.jpg",
+    featured: true,
   },
   {
     title: "Twilight",
+    description: "The Twilight Saga is a series of five vampire-themed romance fantasy films from Summit Entertainment based on the four novels published by author Stephenie Meyer.",
     genre: {
-      name: "Romance Horror",
-      description: "Lorem Ipsum",
+      name: "Romance",
+      description:
+        "A romance novel or romantic novel generally refers to a type of genre fiction novel which places its primary focus on the relationship and romantic love between two people, and usually has an emotionally satisfying and optimistic ending.",
     },
     director: {
-      name: "Stephanie Meyer",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      name: "Bill Condon",
+      bio: "William Condon is an American director and screenwriter. Condon is known for writing and/or directing numerous successful and acclaimed films.",
+      birth: "1955",
+      death: null,
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/b/b6/Twilight_%282008_film%29_poster.jpg",
+    featured: false,
   },
   {
     title: "John Wick",
+    description:
+      "John Wick is an American neo-noir action-thriller media franchise created by screenwriter Derek Kolstad and starring Keanu Reeves as John Wick, a former hitman who is forced back into the criminal underworld he abandoned.",
     genre: {
       name: "Action",
-      description: "Lorem Ipsum",
+      description: "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
     },
     director: {
       name: "Chad Stahelski",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      bio: "Chad Stahelski is an American stuntman and film director. He is known for his work on Buffy the Vampire Slayer and directing the 2014 film John Wick.",
+      birth: "1968",
+      death: null,
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/9/98/John_Wick_TeaserPoster.jpg",
+    featured: true,
   },
   {
     title: "American Sniper",
+    description: "U.S. Navy SEAL Chris Kyle (Bradley Cooper) takes his sole mission -- protect his comrades -- to heart and becomes one of the most lethal snipers in American history.",
     genre: {
       name: "Action",
-      description: "Lorem Ipsum",
+      description: "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
     },
     director: {
       name: "Clint Eastwood",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      bio: "Clinton Eastwood Jr. is an American actor, film director, producer, and composer.",
+      birth: "1930",
+      death: null,
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/1/10/American_Sniper_poster.jpg",
+    featured: true,
   },
   {
     title: "Rocky",
+    description: "Rocky is a 1976 American sports drama film written by and starring Sylvester Stallone, and directed by John G. Avildsen.",
     genre: {
       name: "Action",
-      description: "Lorem Ipsum",
+      description: "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
     },
     director: {
       name: "John G. Avildsen",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      bio: "John Guilbert Avildsen was an American film director. He is perhaps best known for directing Rocky, which earned him the Academy Award for Best Director.",
+      birth: "1935",
+      death: "2017",
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/1/18/Rocky_poster.jpg",
+    featured: true,
+  },
+  {
+    title: "Rocky Balboa",
+    description: "Rocky is a 1976 American sports drama film written by and starring Sylvester Stallone, and directed by John G. Avildsen.",
+    genre: {
+      name: "Action",
+      description: "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
+    },
+    director: {
+      name: "John G. Avildsen",
+      bio: "John Guilbert Avildsen was an American film director. He is perhaps best known for directing Rocky, which earned him the Academy Award for Best Director.",
+      birth: "1935",
+      death: "2017",
+    },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/d/db/Rocky_Balboa_%282006%29_theatrical_poster.jpg",
+    featured: true,
   },
   {
     title: "300",
+    description:
+      "In 480 B.C. a state of war exists between Persia, led by King Xerxes (Rodrigo Santoro), and Greece. At the Battle of Thermopylae, Leonidas (Gerard Butler), king of the Greek city state of Sparta, leads his badly outnumbered warriors against the massive Persian army.",
     genre: {
       name: "Action",
-      description: "Lorem Ipsum",
+      description: "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
     },
     director: {
       name: "Zack Snyder",
-      bio: "Lorem Ipsum",
-      dob: 1990,
+      bio: "Zachary Edward Snyder is an American film director, producer, screenwriter, and cinematographer.",
+      birth: "1966",
+      death: null,
     },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/5/5c/300poster.jpg",
+    featured: false,
+  },
+  {
+    title: "Creed",
+    description: "Adonis Johnson (Michael B. Jordan) never knew his famous father, boxing champion Apollo Creed, who died before Adonis was born.",
+    genre: {
+      name: "Action",
+      description: "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
+    },
+    director: {
+      name: "John G. Avildsen",
+      bio: "John Guilbert Avildsen was an American film director. He is perhaps best known for directing Rocky, which earned him the Academy Award for Best Director.",
+      birth: "1935",
+      death: "2017",
+    },
+    imagePath: "https://upload.wikimedia.org/wikipedia/en/2/24/Creed_poster.jpg",
+    featured: true,
   },
 ];
 
 let users = [
   {
-    id: 1,
     name: "Max",
+    password: "123456",
+    email: "max@gmail.com",
+    birthday: "1982-12-01",
     favoriteMovies: [],
   },
   {
-    id: 2,
     name: "Jane",
-    favoriteMovies: ["Creed"],
+    password: "123456",
+    email: "jane@gmail.com",
+    birthday: "1999-02-05",
+    favoriteMovies: [],
   },
   {
-    id: 3,
     name: "Sam",
+    password: "123456",
+    email: "sam@gmail.com",
+    birthday: "1987-07-13",
+    favoriteMovies: [],
+  },
+  {
+    name: "Sid",
+    password: "123456",
+    email: "sid@gmail.com",
+    birthday: "1947-09-13",
+    favoriteMovies: [],
+  },
+  {
+    name: "Jack",
+    password: "123456",
+    email: "jack@gmail.com",
+    birthday: "1989-10-09",
     favoriteMovies: [],
   },
 ];
