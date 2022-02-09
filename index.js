@@ -1,7 +1,18 @@
 const bodyParser = require("body-parser");
+
 const express = require("express"),
   uuid = require("uuid"),
   morgan = require("morgan");
+
+// integration between your REST API and your database layer using Mongoose
+const mongoose = require("mongoose");
+const Models = require("./models.js");
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect("mongodb://localhost:27017/test", { useNewUrlParser: true, useUnifiedTopology: true });
+// Mongoose end
 
 const app = express();
 app.use(bodyParser.json());
