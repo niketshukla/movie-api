@@ -6,7 +6,7 @@ const express = require("express"),
 
 // integration between your REST API and your database layer using Mongoose
 const mongoose = require("mongoose");
-const Models = require("./models.js");
+const Models = require("./modal.js");
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -238,23 +238,51 @@ app.get("/documentation", (req, res) => {
 });
 // Read
 app.get("/movies", (req, res) => {
-  res.json(movies);
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 // Read
 app.get("/movies/:title", (req, res) => {
-  res.json(
-    movies.find((movie) => {
-      return movie.title === req.params.title;
+  Movies.findOne({ "Movies.Title": req.params.title })
+    .then((movie) => {
+      res.json(movie);
     })
-  );
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 // Read
-app.get("/movies/genre/:genreName", (req, res) => {
-  res.json(movies.find((movie) => movie.genre.name === req.params.genreName).genre);
+app.get("/genre/:genreName", (req, res) => {
+  Movies.findOne({ "Genre.Name": req.params.genreName })
+    .then((movie) => {
+      res.json(movie.genre.description);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 // Read
 app.get("/movies/director/:directorName", (req, res) => {
   res.json(movies.find((movie) => movie.director.name === req.params.directorName).director);
+});
+// Read
+app.get("/users", (req, res) => {
+  Users.find()
+    .then((users) => {
+      res.status(201).json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 // Create
 app.post("/users", (req, res) => {
