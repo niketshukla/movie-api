@@ -39,7 +39,7 @@
         </tr>
         <tr>
           <td>Return data about a genre by name/title (eg. Thriller)</td>
-          <td>/movies/genre/:genreName</td>
+          <td>/genre/:genreName</td>
           <td>genreName</td>
           <td>GET</td>
           <td>None</td>
@@ -47,7 +47,7 @@
         </tr>
         <tr>
           <td>Return data about a director by name</td>
-          <td>/movies/director/:directorName</td>
+          <td>/director/:directorName</td>
           <td>directorName</td>
           <td>GET</td>
           <td>None</td>
@@ -63,7 +63,7 @@
         </tr>
         <tr>
           <td>Allow users to update their info ie. username</td>
-          <td>/users/:id</td>
+          <td>/users/:username</td>
           <td>id</td>
           <td>PUT</td>
           <td>None</td>
@@ -71,7 +71,7 @@
         </tr>
         <tr>
           <td>Allow users to add movie to their favorites</td>
-          <td>/users/:id/:movieTitle</td>
+          <td>/users/:username/movies/:title</td>
           <td>movieTitle</td>
           <td>POST</td>
           <td>None</td>
@@ -79,7 +79,7 @@
         </tr>
         <tr>
           <td>Allow users to remove movie from their favorites</td>
-          <td>/users/:id/:movieTitle</td>
+          <td>/users/:username/movies/:title</td>
           <td>movieTitle</td>
           <td>DELETE</td>
           <td>None</td>
@@ -87,7 +87,7 @@
         </tr>
         <tr>
           <td>Allow users to deregister</td>
-          <td>/users</td>
+          <td>/users/:username</td>
           <td>None</td>
           <td>DELETE</td>
           <td>None</td>
