@@ -20,6 +20,12 @@ app.use(express.static(__dirname + "/css"));
 
 // use morgan for loggin into the log.txt
 app.use(morgan("common"));
+
+//integrating auth.js file for authentication and authorization using HTTP and JWSToken
+let auth = require("./auth")(app);
+const passport = require("passport");
+require("./passport");
+
 // Read
 app.get("/", (req, res) => {
   res.send("Welcome to Myflix");
@@ -29,7 +35,7 @@ app.get("/documentation", (req, res) => {
   res.sendFile("public/documentation.html", { root: __dirname });
 });
 // Read
-app.get("/movies", (req, res) => {
+app.get("/movies", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -40,7 +46,7 @@ app.get("/movies", (req, res) => {
     });
 });
 // Read
-app.get("/movies/:title", (req, res) => {
+app.get("/movies/:title", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.findOne({ title: req.params.title })
     .then((movie) => {
       res.json(movie);
@@ -51,7 +57,7 @@ app.get("/movies/:title", (req, res) => {
     });
 });
 // Read
-app.get("/genre/:genreName", (req, res) => {
+app.get("/genre/:genreName", passport.authenticate("jwt", { session: false }), (req, res) => {
   // because its not a direct key to the movies object we should write genre.name as genre is an object
   Movies.findOne({ "genre.name": req.params.genreName })
     .then((movie) => {
@@ -63,7 +69,7 @@ app.get("/genre/:genreName", (req, res) => {
     });
 });
 // Read
-app.get("/director/:directorName", (req, res) => {
+app.get("/director/:directorName", passport.authenticate("jwt", { session: false }), (req, res) => {
   Movies.findOne({ "director.name": req.params.directorName })
     .then((movie) => {
       res.json(movie.director);
@@ -74,7 +80,7 @@ app.get("/director/:directorName", (req, res) => {
     });
 });
 // Read
-app.get("/users", (req, res) => {
+app.get("/users", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -86,6 +92,14 @@ app.get("/users", (req, res) => {
 });
 // Create new user
 app.post("/users", (req, res) => {
+  // check the validation object for errors
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
+  let hashedPassword = Users.hashPassword(req.body.Password); //integrating hashing
   Users.findOne({ username: req.body.username })
     .then((user) => {
       if (user) {
@@ -93,7 +107,7 @@ app.post("/users", (req, res) => {
       } else {
         Users.create({
           username: req.body.username,
-          password: req.body.password,
+          password: hashedPassword, //here the password is hashed
           email: req.body.email,
           birthday: req.body.birthday,
         })
@@ -112,13 +126,13 @@ app.post("/users", (req, res) => {
     });
 });
 // Update
-app.put("/users/:username", (req, res) => {
+app.put("/users/:username", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndUpdate(
     { username: req.params.username },
     {
       $set: {
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
         email: req.body.email,
         birthday: req.body.birthday,
       },
@@ -135,7 +149,7 @@ app.put("/users/:username", (req, res) => {
   );
 });
 // Delete a user
-app.delete("/users/:username", (req, res) => {
+app.delete("/users/:username", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndRemove({ username: req.params.username })
     .then((user) => {
       if (!user) {
@@ -150,7 +164,7 @@ app.delete("/users/:username", (req, res) => {
     });
 });
 // Create add movie to fav
-app.post("/users/:username/movies/:title", (req, res) => {
+app.post("/users/:username/movies/:title", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndUpdate(
     { username: req.params.username },
     {
@@ -168,7 +182,7 @@ app.post("/users/:username/movies/:title", (req, res) => {
   );
 });
 // Delete remove a movie from fav
-app.delete("/users/:username/movies/:title", (req, res) => {
+app.delete("/users/:username/movies/:title", passport.authenticate("jwt", { session: false }), (req, res) => {
   Users.findOneAndUpdate(
     { username: req.params.username },
     {
