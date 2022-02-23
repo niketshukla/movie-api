@@ -99,7 +99,8 @@ app.post("/users", (req, res) => {
     return res.status(422).json({ errors: errors.array() });
   }
 
-  let hashedPassword = Users.hashPassword(req.body.Password); //integrating hashing
+  let hashedPassword = Users.hashPassword(req.body.password); //integrating hashing
+
   Users.findOne({ username: req.body.username })
     .then((user) => {
       if (user) {
