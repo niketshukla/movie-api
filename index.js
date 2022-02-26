@@ -92,15 +92,6 @@ app.get("/users", passport.authenticate("jwt", { session: false }), (req, res) =
 });
 // Create new user
 app.post("/users", (req, res) => {
-  // check the validation object for errors
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-
-  let hashedPassword = Users.hashPassword(req.body.password); //integrating hashing
-
   Users.findOne({ username: req.body.username })
     .then((user) => {
       if (user) {
@@ -108,7 +99,7 @@ app.post("/users", (req, res) => {
       } else {
         Users.create({
           username: req.body.username,
-          password: hashedPassword, //here the password is hashed
+          password: req.body.password,
           email: req.body.email,
           birthday: req.body.birthday,
         })
@@ -133,7 +124,7 @@ app.put("/users/:username", passport.authenticate("jwt", { session: false }), (r
     {
       $set: {
         username: req.body.username,
-        password: hashedPassword,
+        password: req.body.password,
         email: req.body.email,
         birthday: req.body.birthday,
       },
