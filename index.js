@@ -21,6 +21,10 @@ app.use(express.static(__dirname + "/css"));
 // use morgan for loggin into the log.txt
 app.use(morgan("common"));
 
+// CORS integration
+const cors = require("cors");
+app.use(cors());
+
 //integrating auth.js file for authentication and authorization using HTTP and JWSToken
 let auth = require("./auth")(app);
 const passport = require("passport");
@@ -92,6 +96,7 @@ app.get("/users", passport.authenticate("jwt", { session: false }), (req, res) =
 });
 // Create new user
 app.post("/users", (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.password);
   Users.findOne({ username: req.body.username })
     .then((user) => {
       if (user) {
@@ -99,7 +104,7 @@ app.post("/users", (req, res) => {
       } else {
         Users.create({
           username: req.body.username,
-          password: req.body.password,
+          password: hashedPassword,
           email: req.body.email,
           birthday: req.body.birthday,
         })
