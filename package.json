@@ -1,41 +1,41 @@
-{
-  "name": "movie-api",
-  "version": "1.0.0",
-  "description": "> This build the server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/niketshukla/movie-api.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/niketshukla/movie-api/issues"
-  },
-  "homepage": "https://github.com/niketshukla/movie-api#readme",
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.2",
-    "express-validator": "^6.14.0",
-    "install": "^0.13.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.0",
-    "morgan": "^1.10.0",
-    "npm": "^8.3.1",
-    "passport": "^0.5.2",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  }
-}
+// {
+//   "name": "movie-api",
+//   "version": "1.0.0",
+//   "description": "> This build the server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.",
+//   "main": "index.js",
+//   "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1",
+//     "start": "node index.js",
+//     "dev": "nodemon index.js"
+//   },
+//   "repository": {
+//     "type": "git",
+//     "url": "git+https://github.com/niketshukla/movie-api.git"
+//   },
+//   "keywords": [],
+//   "author": "",
+//   "license": "ISC",
+//   "bugs": {
+//     "url": "https://github.com/niketshukla/movie-api/issues"
+//   },
+//   "homepage": "https://github.com/niketshukla/movie-api#readme",
+//   "dependencies": {
+//     "bcrypt": "^5.0.1",
+//     "body-parser": "^1.19.1",
+//     "cors": "^2.8.5",
+//     "express": "^4.17.2",
+//     "express-validator": "^6.14.0",
+//     "install": "^0.13.0",
+//     "jsonwebtoken": "^8.5.1",
+//     "mongoose": "^6.2.0",
+//     "morgan": "^1.10.0",
+//     "npm": "^8.3.1",
+//     "passport": "^0.5.2",
+//     "passport-jwt": "^4.0.0",
+//     "passport-local": "^1.0.0",
+//     "uuid": "^8.3.2"
+//   },
+//   "devDependencies": {
+//     "nodemon": "^2.0.15"
+//   }
+// }
