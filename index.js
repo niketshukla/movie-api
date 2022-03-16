@@ -29,9 +29,10 @@ const cors = require("cors");
 app.use(cors());
 
 //integrating auth.js file for authentication and authorization using HTTP and JWSToken
-let auth = require("./auth")(app);
+let auth = require("./auth.js");
 const passport = require("passport");
 require("./passport");
+auth(app);
 
 // For input validation
 const { check, validationResult } = require("express-validator");
